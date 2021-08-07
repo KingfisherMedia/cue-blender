@@ -1,6 +1,9 @@
 import bpy
 from bpy import context
 from obswebsocket import obsws, requests
+from threading import Thread
+
+
 # import asyncio
 # from simpleobsws import obsws
 
@@ -21,6 +24,8 @@ class CueBlender:
         for clip in clips:
             if clip.frame_final_start <= frame and clip.frame_final_end > frame:
                 return clip
+        
+#        return [clip for clip in clips if(clip.frame_final_start <= frame and clip.frame_final_end > frame)][0]
 
     def get_multitrack_clips(self, clips):
         multi_clips = []
@@ -52,6 +57,7 @@ class CueBlender:
             self.prevcam = camid
             self.set_obs_scene(f"Cam {camid}")
 
+
 cueb = CueBlender(password="pyRupKELm3LQKr7")
 
 for x in bpy.app.handlers.frame_change_pre:
@@ -60,6 +66,8 @@ for x in bpy.app.handlers.frame_change_pre:
             bpy.app.handlers.frame_change_pre.remove(x)
     except: pass
 
-bpy.app.handlers.frame_change_pre.append(cueb.frame_event)
+def frame_event_thread(scene, args): 
+    Thread(target=cueb.frame_event, args=[scene, args]).start()
+
+bpy.app.handlers.frame_change_pre.append(frame_event_thread)
 print(bpy.app.handlers.frame_change_pre)
-#frame_event()
