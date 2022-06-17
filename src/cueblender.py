@@ -1,6 +1,6 @@
 import bpy
 from bpy import context
-from obswebsocket import obsws, requests
+from ._vendor.obswebsocket import obsws, requests
 from threading import Thread
 
 

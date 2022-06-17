@@ -1,3 +1,7 @@
+# Vendoring
+*/_vendor
+*.zip
+
 # Blender
 *.blend?
 
