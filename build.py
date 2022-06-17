@@ -3,7 +3,7 @@ from shutil import make_archive, copytree, rmtree
 from os.path import join, exists
 
 # Name of addon. Determines the name of the zip package.
-ADDON_NAME: str = "addon-test"
+ADDON_NAME: str = "cue-blender"
 # Name of folder that the plugin source code lives in.
 CODE_DIR: str = "src"
 # Name of folder to put python packages.
