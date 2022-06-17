@@ -2,8 +2,6 @@ import bpy
 from bpy import context
 from ._vendor.obswebsocket import obsws, requests
 from threading import Thread
-
-
 # import asyncio
 # from simpleobsws import obsws
 

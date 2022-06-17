@@ -1,4 +1,4 @@
 target = "src/_vendor"
 packages = [
-    "pip install obs-websocket-py",
+    "obs-websocket-py",
 ]

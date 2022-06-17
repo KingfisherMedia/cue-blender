@@ -1,6 +1,6 @@
 import vendorize.cli as vendorize
 from shutil import make_archive, copytree, rmtree
-from os.path import join
+from os.path import join, exists
 
 # Name of addon. Determines the name of the zip package.
 ADDON_NAME: str = "addon-test"
@@ -14,7 +14,8 @@ DEP_PATH = join(CODE_DIR, DEP_FOLDER_NAME)
 
 # MAKE VENDORISED PACKAGE BUNDLE
 # Delete old package bundle to avoid stale packages in the build.
-rmtree(DEP_PATH)
+if(exists(DEP_PATH)):
+    rmtree(DEP_PATH)
 # Download packages into the _vendor folder to be used in the addon.
 # Configure the downloaded packages in vendorize.toml.
 vendorize.main()
